@@ -10,10 +10,15 @@ const burger = (props) => {
                 return <BurgerIngredient key={igKey + i} type={igKey} />
             })
         })
+        //flattening the array to find out if not elements are passed down so that we can show an error message
+        .reduce((arr, el)=>{
+            return arr.concat(el);
+        }, []);
+        console.log(transformedIngredients)
     return(
         <div className={classes.Burger}>
             <BurgerIngredient type="bread-top" />
-            {transformedIngredients}
+                {transformedIngredients.length? transformedIngredients: 'Please add ingredients to your burger.'}
             <BurgerIngredient type="bread-bottom" />
         </div>
     );
